@@ -1,3 +1,8 @@
+// Nombre: Joaquín Esteban Torres Flores
+// RUT: 21.547.370-8
+// Usuario de GitHub: JoaquinTFdev1
+// Carrera: Ingeniería Civil Industrial
+
 #include <iostream>
 #include "Hospital.h"
 
