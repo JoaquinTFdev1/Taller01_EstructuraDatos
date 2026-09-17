@@ -57,6 +57,8 @@ public:
         string nombre
     ) const;
 
+    Paciente* buscarPaciente(string id,string& nombreServicio) const;
+
     void mostrarServicios() const;
 
     void clear();

@@ -1,6 +1,9 @@
 #pragma once
 
 #include "Paciente.h"
+#include <string>
+
+using namespace std;
 
 class ColaPacientes {
 
@@ -30,7 +33,6 @@ public:
 
     ~ColaPacientes();
 
-    // Evitar copias accidentales de la cola
     ColaPacientes(const ColaPacientes&) = delete;
     ColaPacientes& operator=(const ColaPacientes&) = delete;
 
@@ -44,5 +46,8 @@ public:
 
     Paciente* front() const;
 
+    Paciente* buscarPorId(string id) const;
+
     void mostrar() const;
+
 };

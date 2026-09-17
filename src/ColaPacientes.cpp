@@ -67,6 +67,24 @@ Paciente* ColaPacientes::pop() {
     return paciente;
 }
 
+
+Paciente* ColaPacientes::buscarPorId(string id) const {
+
+    NodoCola* cursor =
+        this->frente;
+
+    while (cursor != nullptr) {
+
+        if (cursor->paciente->getId() == id) {
+            return cursor->paciente;
+        }
+
+        cursor = cursor->next;
+    }
+    return nullptr;
+}
+
+
 Paciente* ColaPacientes::front() const {
 
     if (this->frente == nullptr) {

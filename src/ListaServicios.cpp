@@ -180,6 +180,28 @@ void ListaServicios::mostrarServicios() const {
     }
 }
 
+
+Paciente* ListaServicios::buscarPaciente(string id, string& nombreServicio) const {
+
+    NodoServicio* cursor = this->start;
+
+    while (cursor != nullptr) {
+
+        Paciente* paciente = cursor ->servicio ->buscarPaciente(id);
+
+        if (paciente != nullptr) {
+            nombreServicio = cursor-> servicio ->getNombre();
+            return paciente;
+        }
+
+        cursor = cursor->next;
+    }
+
+    nombreServicio = "";
+
+    return nullptr;
+}
+
 void ListaServicios::clear() {
 
     while (
