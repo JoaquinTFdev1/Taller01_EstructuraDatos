@@ -9,8 +9,10 @@ add_executable(taller01
         src/main.cpp
         src/Persona.cpp
         include/Paciente.h
-        include/Paciente.cpp
+        src/Paciente.cpp
         include/Persona.h
+        include/ColaPacientes.h
+        src/ColaPacientes.cpp
 )
 
 target_include_directories(taller01 PRIVATE include)
