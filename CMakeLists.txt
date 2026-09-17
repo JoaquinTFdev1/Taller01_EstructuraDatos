@@ -27,6 +27,8 @@ add_executable(taller01
         src/Utilidades.cpp
         include/ArchivoPacientes.h
         src/ArchivoPacientes.cpp
+        include/Hospital.h
+        src/Hospital.cpp
 )
 
 target_include_directories(taller01 PRIVATE include)
