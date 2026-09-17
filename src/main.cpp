@@ -1,4 +1,5 @@
 #include <iostream>
+
 #include "Hospital.h"
 
 using namespace std;
@@ -15,11 +16,16 @@ int main() {
 
 
     cout
-        << "\nServicios registrados:"
+        << "\nCargando pacientes..."
         << endl;
 
 
-    hospital.mostrarServicios();
+    hospital.cargarPacientesDesdeArchivo(
+        "pacientes.txt"
+    );
+
+
+    hospital.mostrarCola();
 
 
     return 0;

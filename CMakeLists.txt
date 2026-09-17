@@ -31,4 +31,17 @@ add_executable(taller01
         src/Hospital.cpp
 )
 
-target_include_directories(taller01 PRIVATE include)
+
+
+target_include_directories(
+        taller01
+        PRIVATE
+        include
+)
+
+
+configure_file(
+        ${CMAKE_CURRENT_SOURCE_DIR}/pacientes.txt
+        ${CMAKE_CURRENT_BINARY_DIR}/pacientes.txt
+        COPYONLY
+)
