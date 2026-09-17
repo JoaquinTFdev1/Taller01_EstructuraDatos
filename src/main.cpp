@@ -1,5 +1,7 @@
 #include <iostream>
-#include "ColaPacientes.h"
+
+#include "ListaPacientes.h"
+
 using namespace std;
 
 int main() {
@@ -8,40 +10,22 @@ int main() {
     cout << "       HOSPITAL MARMAJA         " << endl;
     cout << "================================" << endl;
 
-    ColaPacientes cola;
+    ListaPacientes pacientes;
 
-    Paciente* p1 = new Paciente("001", "Juan Perez", 25, "Cardiologia");
-    Paciente* p2 = new Paciente("002", "Maria Soto", 67, "Urgencias");
-    Paciente* p3 = new Paciente("003", "Pedro Rojas", 43, "Cirugia");
+    pacientes.insertLast(new Paciente("001","Juan Perez",25,"Cardiologia"));
+    pacientes.insertLast(new Paciente("002","Maria Soto",67,"Urgencias"));
+    pacientes.insertLast(new Paciente("003","Pedro Rojas",43,"Cirugia"));
 
-    cola.push(p1);
-    cola.push(p2);
-    cola.push(p3);
+    cout << "\n=== LISTA DE PACIENTES ===" << endl;
+    pacientes.mostrar();
 
-    cola.mostrar();
-    cout << "\nCantidad inicial: " << cola.getSize() << endl;
+    cout << "\nCantidad: " << pacientes.getSize() << endl;
 
-    Paciente* primero = cola.front();
+    Paciente* encontrado = pacientes.buscarPorId("002");
 
-    if (primero != nullptr) {
-        cout << "Primer paciente: " << primero->getId() << endl;
+    if (encontrado != nullptr) {
+        cout << "\nPaciente encontrado: " << encontrado->getNombre() << endl;
     }
-
-    cout << "\n=== PRUEBA FIFO ===" << endl;
-
-    while (!cola.isEmpty()) {
-
-        Paciente* paciente = cola.pop();
-
-        cout << "Paciente retirado: " << paciente->getId() << " - " << paciente->getNombre() << endl;
-        delete paciente;
-    }
-
-    cola.mostrar();
-
-    cout << "\nCantidad final: "
-         << cola.getSize()
-         << endl;
 
     return 0;
 }
