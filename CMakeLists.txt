@@ -23,6 +23,8 @@ add_executable(taller01
         src/Atencion.cpp
         include/PilaAtenciones.h
         src/PilaAtenciones.cpp
+        include/Utilidades.h
+        src/Utilidades.cpp
 )
 
 target_include_directories(taller01 PRIVATE include)
