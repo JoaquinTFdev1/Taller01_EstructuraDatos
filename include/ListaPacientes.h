@@ -1,7 +1,3 @@
-//
-// Created by joaqu on 17-09-2026.
-//
-
 #pragma once
 
 #include "Paciente.h"

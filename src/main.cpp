@@ -1,6 +1,5 @@
 #include <iostream>
-
-#include "ListaPacientes.h"
+#include "Servicio.h"
 
 using namespace std;
 
@@ -10,21 +9,18 @@ int main() {
     cout << "       HOSPITAL MARMAJA         " << endl;
     cout << "================================" << endl;
 
-    ListaPacientes pacientes;
+    Servicio cardiologia("Cardiologia");
 
-    pacientes.insertLast(new Paciente("001","Juan Perez",25,"Cardiologia"));
-    pacientes.insertLast(new Paciente("002","Maria Soto",67,"Urgencias"));
-    pacientes.insertLast(new Paciente("003","Pedro Rojas",43,"Cirugia"));
+    cardiologia.agregarPaciente(new Paciente("001","Juan Perez",25,"Cardiologia"));
+    cardiologia.agregarPaciente(new Paciente("006","Sofia Diaz",52,"Cardiologia"));
+    cardiologia.mostrarPacientes();
 
-    cout << "\n=== LISTA DE PACIENTES ===" << endl;
-    pacientes.mostrar();
+    cout << "\nBuscando paciente 006..." << endl;
 
-    cout << "\nCantidad: " << pacientes.getSize() << endl;
-
-    Paciente* encontrado = pacientes.buscarPorId("002");
+    Paciente* encontrado = cardiologia.buscarPaciente("006");
 
     if (encontrado != nullptr) {
-        cout << "\nPaciente encontrado: " << encontrado->getNombre() << endl;
+        cout << "Paciente encontrado: " << encontrado->getNombre() << endl;
     }
 
     return 0;

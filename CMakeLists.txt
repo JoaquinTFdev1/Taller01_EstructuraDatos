@@ -15,6 +15,8 @@ add_executable(taller01
         src/ColaPacientes.cpp
         include/ListaPacientes.h
         src/ListaPacientes.cpp
+        include/Servicio.h
+        src/Servicio.cpp
 )
 
 target_include_directories(taller01 PRIVATE include)

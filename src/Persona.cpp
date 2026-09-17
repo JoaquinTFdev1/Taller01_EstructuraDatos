@@ -1,7 +1,3 @@
-//
-// Created by joaqu on 17-09-2026.
-//
-
 #include "Persona.h"
 
 Persona::Persona(string nombre, int edad) {
