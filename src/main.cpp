@@ -1,70 +1,75 @@
 #include <iostream>
 
-#include "Utilidades.h"
+#include "ArchivoPacientes.h"
 
 using namespace std;
 
 int main() {
 
-    cout
-        << "=== PRUEBA DE VALIDACIONES ==="
-        << endl;
+    string linea =
+        "001;Juan Perez;25;Cardiologia";
 
+
+    string id;
+
+    string nombre;
 
     int edad = 0;
 
+    string servicio;
+
+    string error;
+
+
+    bool valido =
+        interpretarLineaPaciente(
+            linea,
+            id,
+            nombre,
+            edad,
+            servicio,
+            error
+        );
+
 
     if (
-        convertirAEnteroNoNegativo(
-            "25",
-            edad
-        )
+        valido
     ) {
 
         cout
-            << "Edad valida: "
+            << "=== PACIENTE VALIDO ==="
+            << endl;
+
+
+        cout
+            << "ID: "
+            << id
+            << endl;
+
+
+        cout
+            << "Nombre: "
+            << nombre
+            << endl;
+
+
+        cout
+            << "Edad: "
             << edad
             << endl;
-    }
 
-
-    if (
-        !convertirAEnteroNoNegativo(
-            "2a",
-            edad
-        )
-    ) {
 
         cout
-            << "Edad '2a' rechazada correctamente."
+            << "Servicio: "
+            << servicio
             << endl;
     }
 
-
-    string servicio1 =
-        obtenerNombreServicioCanonico(
-            "Cardiologia"
-        );
-
-
-    cout
-        << "Servicio valido: "
-        << servicio1
-        << endl;
-
-
-    string servicio2 =
-        obtenerNombreServicioCanonico(
-            "Oncologia"
-        );
-
-
-    if (
-        servicio2.empty()
-    ) {
+    else {
 
         cout
-            << "Oncologia no pertenece a los servicios del hospital."
+            << "Error: "
+            << error
             << endl;
     }
 
