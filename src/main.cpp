@@ -1,26 +1,71 @@
 #include <iostream>
-#include "Servicio.h"
+#include "ListaServicios.h"
 
 using namespace std;
-
 int main() {
 
     cout << "================================" << endl;
     cout << "       HOSPITAL MARMAJA         " << endl;
     cout << "================================" << endl;
 
-    Servicio cardiologia("Cardiologia");
+    ListaServicios servicios;
 
-    cardiologia.agregarPaciente(new Paciente("001","Juan Perez",25,"Cardiologia"));
-    cardiologia.agregarPaciente(new Paciente("006","Sofia Diaz",52,"Cardiologia"));
-    cardiologia.mostrarPacientes();
+    servicios.insertLast(
+        new Servicio("Urgencias")
+    );
 
-    cout << "\nBuscando paciente 006..." << endl;
+    servicios.insertLast(
+        new Servicio("Medicina General")
+    );
 
-    Paciente* encontrado = cardiologia.buscarPaciente("006");
+    servicios.insertLast(
+        new Servicio("Cardiologia")
+    );
 
-    if (encontrado != nullptr) {
-        cout << "Paciente encontrado: " << encontrado->getNombre() << endl;
+    servicios.insertLast(
+        new Servicio("Neurologia")
+    );
+
+    servicios.insertLast(
+        new Servicio("Traumatologia")
+    );
+
+    servicios.insertLast(
+        new Servicio("Cirugia")
+    );
+
+    servicios.insertLast(
+        new Servicio("Pediatria")
+    );
+
+    servicios.insertLast(
+        new Servicio("Hospitalizacion")
+    );
+
+    servicios.mostrarServicios();
+
+    cout
+        << "\nCantidad de servicios: "
+        << servicios.getSize()
+        << endl;
+
+    cout
+        << "\nBuscando Cardiologia..."
+        << endl;
+
+    Servicio* cardiologia =
+        servicios.buscarServicio(
+            "Cardiologia"
+        );
+
+    if (
+        cardiologia != nullptr
+    ) {
+
+        cout
+            << "Servicio encontrado: "
+            << cardiologia->getNombre()
+            << endl;
     }
 
     return 0;

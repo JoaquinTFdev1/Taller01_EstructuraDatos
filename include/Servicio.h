@@ -1,11 +1,8 @@
 #pragma once
-
 #include "ListaPacientes.h"
-
 #include <string>
 
 using namespace std;
-
 class Servicio {
 
 private:
