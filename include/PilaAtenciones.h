@@ -4,31 +4,19 @@
 class PilaAtenciones {
 
 private:
-
     class NodoAtencion {
 
     public:
-
         Atencion atencion;
-
         NodoAtencion* next;
-
-
-        NodoAtencion(
-            const Atencion& atencion
-        ) {
-
+        NodoAtencion(const Atencion& atencion) {
             this->atencion = atencion;
-
             this->next = nullptr;
         }
     };
 
-
     NodoAtencion* topNode;
-
     int cantidad;
-
 
 public:
 
@@ -36,40 +24,19 @@ public:
 
     ~PilaAtenciones();
 
+    PilaAtenciones(const PilaAtenciones&) = delete;
 
-    // Evitamos copiar una estructura
-    // que contiene memoria dinamica.
-    PilaAtenciones(
-        const PilaAtenciones&
-    ) = delete;
-
-
-    PilaAtenciones& operator=(
-        const PilaAtenciones&
-    ) = delete;
-
+    PilaAtenciones& operator=(const PilaAtenciones&) = delete;
 
     bool isEmpty() const;
 
     int getSize() const;
 
+    void push(const Atencion& atencion);
 
+    bool pop(Atencion& atencion);
 
-    void push(
-        const Atencion& atencion
-    );
-
-
-    bool pop(
-        Atencion& atencion
-    );
-
-
-
-    bool top(
-        Atencion& atencion
-    ) const;
-
+    bool top(Atencion& atencion) const;
 
     void mostrar() const;
 

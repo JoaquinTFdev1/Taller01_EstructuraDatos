@@ -110,6 +110,8 @@ bool Hospital::existePaciente(string id) const {
     return false;
 }
 
+
+
 void Hospital::mostrarEstadoGeneral() const {
 
     int derivados =
@@ -210,59 +212,91 @@ void Hospital::buscarPaciente(
          << endl;
 }
 
+
 void Hospital::atenderPacientes(int cantidad) {
 
     if (cantidad <= 0) {
-        cout << "La cantidad a atender debe ser mayor que 0." << endl;
+
+        cout << "La cantidad a atender debe ser mayor que 0."
+             << endl;
+
         return;
     }
 
     if (this->colaEspera.isEmpty()) {
 
-        cout << "No hay pacientes pendientes." << endl;
+        cout << "No hay pacientes pendientes."
+             << endl;
+
         return;
     }
 
-
     if (cantidad > this->colaEspera.getSize()) {
 
-        cout << "Solo hay " << this->colaEspera.getSize() << " paciente(s) en espera." << endl;
-        cout << "Se atenderan todos los disponibles." << endl;
+        cout << "Solo hay "
+             << this->colaEspera.getSize()
+             << " paciente(s) en espera."
+             << endl;
 
         cantidad = this->colaEspera.getSize();
     }
-
 
     cout << "\n=== ATENDIENDO PACIENTES ===" << endl;
 
     for (int i = 0; i < cantidad; i++) {
 
-        Paciente* paciente = this->colaEspera.pop();
+        Paciente* paciente = this->colaEspera.front();
 
         if (paciente == nullptr) {
+
             return;
         }
 
-        Servicio* servicio = this->servicios.buscarServicio(paciente->getServicio());
+        Servicio* servicio =
+            this->servicios.buscarServicio(
+                paciente->getServicio()
+            );
 
         if (servicio == nullptr) {
 
-            cout << "Error: no se encontro el servicio de " << paciente->getNombre() << "." << endl;
-            this->colaEspera.push(paciente);
+            cout << "Error: no se encontro el servicio de "
+                 << paciente->getNombre()
+                 << "."
+                 << endl;
+
             return;
         }
 
+        paciente = this->colaEspera.pop();
+
         servicio->agregarPaciente(paciente);
+
         Atencion registro(*paciente);
 
         this->historial.push(registro);
 
         cout << "\nPaciente atendido:" << endl;
-        cout << "ID: " << paciente->getId() << endl;
-        cout << "Nombre: " << paciente->getNombre() << endl;
-        cout << "Edad: " << paciente->getEdad() << endl;
-        cout << "Servicio: " << paciente->getServicio() << endl;
-        cout << "Paciente enviado a " << paciente->getServicio() << "." << endl;
+
+        cout << "ID: "
+             << paciente->getId()
+             << endl;
+
+        cout << "Nombre: "
+             << paciente->getNombre()
+             << endl;
+
+        cout << "Edad: "
+             << paciente->getEdad()
+             << endl;
+
+        cout << "Servicio: "
+             << paciente->getServicio()
+             << endl;
+
+        cout << "Paciente enviado a "
+             << paciente->getServicio()
+             << "."
+             << endl;
     }
 }
 

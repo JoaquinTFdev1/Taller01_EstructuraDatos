@@ -20,9 +20,7 @@ int ListaPacientes::getSize() const {
     return this->cantidad;
 }
 
-void ListaPacientes::insertLast(
-    Paciente* paciente
-) {
+void ListaPacientes::insertLast(Paciente* paciente) {
 
     if (paciente == nullptr) {
         return;
@@ -46,16 +44,13 @@ void ListaPacientes::insertLast(
     this->cantidad++;
 }
 
-Paciente* ListaPacientes::get(
-    int index
-) const {
+Paciente* ListaPacientes::get(int index) const {
 
     if (index < 0 || index >= this->cantidad) {
         return nullptr;
     }
 
     NodoPaciente* cursor = this->start;
-
     int posicion = 0;
 
     while (cursor != nullptr) {
@@ -66,12 +61,10 @@ Paciente* ListaPacientes::get(
         cursor = cursor->next;
         posicion++;
     }
-
     return nullptr;
 }
 
-Paciente*
-ListaPacientes::getFirst() const {
+Paciente* ListaPacientes::getFirst() const {
 
     if (this->start == nullptr) {
         return nullptr;
@@ -81,10 +74,7 @@ ListaPacientes::getFirst() const {
         this->start->paciente;
 }
 
-Paciente*
-ListaPacientes::buscarPorId(
-    string id
-) const {
+Paciente* ListaPacientes::buscarPorId(string id) const {
 
     NodoPaciente* cursor = this->start;
 
@@ -95,7 +85,6 @@ ListaPacientes::buscarPorId(
 
         cursor = cursor->next;
     }
-
     return nullptr;
 }
 

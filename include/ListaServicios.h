@@ -8,27 +8,16 @@ class ListaServicios {
 private:
 
     class NodoServicio {
-
     public:
-
         Servicio* servicio;
-
         NodoServicio* next;
-
-        NodoServicio(
-            Servicio* servicio
-        ) {
-
-            this->servicio =
-                servicio;
-
-            this->next =
-                nullptr;
+        NodoServicio(Servicio* servicio) {
+            this->servicio = servicio;
+            this->next = nullptr;
         }
     };
 
     NodoServicio* start;
-
     int cantidad;
 
 public:
@@ -45,17 +34,11 @@ public:
 
     int getSize() const;
 
-    void insertLast(
-        Servicio* servicio
-    );
+    void insertLast(Servicio* servicio);
 
-    Servicio* get(
-        int index
-    ) const;
+    Servicio* get(int index) const;
 
-    Servicio* buscarServicio(
-        string nombre
-    ) const;
+    Servicio* buscarServicio(string nombre) const;
 
     Paciente* buscarPaciente(string id,string& nombreServicio) const;
 

@@ -1,20 +1,15 @@
 #include "ColaPacientes.h"
-
 #include <iostream>
 
 using namespace std;
-
 ColaPacientes::ColaPacientes() {
-
     this->frente = nullptr;
     this->final = nullptr;
     this->cantidad = 0;
 }
 
 ColaPacientes::~ColaPacientes() {
-
     while (!this->isEmpty()) {
-
         Paciente* paciente = this->pop();
         delete paciente;
     }
@@ -70,15 +65,12 @@ Paciente* ColaPacientes::pop() {
 
 Paciente* ColaPacientes::buscarPorId(string id) const {
 
-    NodoCola* cursor =
-        this->frente;
+    NodoCola* cursor = this->frente;
 
     while (cursor != nullptr) {
-
         if (cursor->paciente->getId() == id) {
             return cursor->paciente;
         }
-
         cursor = cursor->next;
     }
     return nullptr;
@@ -86,19 +78,15 @@ Paciente* ColaPacientes::buscarPorId(string id) const {
 
 
 Paciente* ColaPacientes::front() const {
-
     if (this->frente == nullptr) {
-
         return nullptr;
     }
-
     return this->frente->paciente;
 }
 
 void ColaPacientes::mostrar() const {
 
     cout << "\n=== PACIENTES EN ESPERA ===" << endl;
-
     if (this->isEmpty()) {
         cout << "No hay pacientes pendientes." << endl;
         return;
@@ -107,7 +95,6 @@ void ColaPacientes::mostrar() const {
     NodoCola* cursor = this->frente;
 
     int numero = 1;
-
     while (cursor != nullptr) {
 
         cout << numero << ". " << cursor->paciente->getId() << " - " << cursor->paciente->getNombre() << endl;

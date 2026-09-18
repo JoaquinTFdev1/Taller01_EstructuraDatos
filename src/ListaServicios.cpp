@@ -4,138 +4,76 @@
 using namespace std;
 ListaServicios::ListaServicios() {
 
-    this->start =
-        nullptr;
-
-    this->cantidad =
-        0;
+    this->start = nullptr;
+    this->cantidad = 0;
 }
 
 ListaServicios::~ListaServicios() {
-
     this->clear();
 }
 
 bool ListaServicios::isEmpty() const {
-
-    return
-        this->start == nullptr;
+    return this->start == nullptr;
 }
 
 int ListaServicios::getSize() const {
-
-    return
-        this->cantidad;
+    return this->cantidad;
 }
 
-void ListaServicios::insertLast(
-    Servicio* servicio
-) {
+void ListaServicios::insertLast(Servicio* servicio) {
 
-    if (
-        servicio == nullptr
-    ) {
-
+    if (servicio == nullptr) {
         return;
     }
 
-    NodoServicio* nuevo =
-        new NodoServicio(
-            servicio
-        );
+    NodoServicio* nuevo = new NodoServicio(servicio);
 
-    // Caso 1: lista vacia
-    if (
-        this->start == nullptr
-    ) {
-
-        this->start =
-            nuevo;
-
+    if (this->start == nullptr) {
+        this->start = nuevo;
         this->cantidad++;
-
         return;
     }
 
-    // Caso 2: buscar el ultimo nodo
-    NodoServicio* cursor =
-        this->start;
+    NodoServicio* cursor = this->start;
 
-    while (
-        cursor->next != nullptr
-    ) {
-
-        cursor =
-            cursor->next;
+    while (cursor->next != nullptr) {
+        cursor = cursor->next;
     }
-
-    cursor->next =
-        nuevo;
-
+    cursor->next = nuevo;
     this->cantidad++;
 }
 
-Servicio* ListaServicios::get(
-    int index
-) const {
+Servicio* ListaServicios::get(int index) const {
 
-    if (
-        index < 0 ||
-        index >= this->cantidad
-    ) {
-
+    if (index < 0 || index >= this->cantidad) {
         return nullptr;
     }
 
-    NodoServicio* cursor =
-        this->start;
-
+    NodoServicio* cursor = this->start;
     int posicion = 0;
 
-    while (
-        cursor != nullptr
-    ) {
+    while (cursor != nullptr) {
 
-        if (
-            posicion == index
-        ) {
-
-            return
-                cursor->servicio;
+        if (posicion == index) {
+            return cursor->servicio;
         }
-
-        cursor =
-            cursor->next;
-
+        cursor = cursor->next;
         posicion++;
     }
 
     return nullptr;
 }
 
-Servicio*
-ListaServicios::buscarServicio(
-    string nombre
-) const {
+Servicio* ListaServicios::buscarServicio(string nombre) const {
 
-    NodoServicio* cursor =
-        this->start;
+    NodoServicio* cursor = this->start;
 
-    while (
-        cursor != nullptr
-    ) {
+    while (cursor != nullptr) {
 
-        if (
-            cursor->servicio->getNombre()
-            == nombre
-        ) {
-
-            return
-                cursor->servicio;
+        if (cursor->servicio->getNombre() == nombre) {
+            return cursor->servicio;
         }
-
-        cursor =
-            cursor->next;
+        cursor = cursor->next;
     }
 
     return nullptr;
@@ -143,62 +81,36 @@ ListaServicios::buscarServicio(
 
 void ListaServicios::mostrarServicios() const {
 
-    cout
-        << "\n=== DEPARTAMENTOS/SERVICIOS ==="
-        << endl;
+    cout << "\n=== DEPARTAMENTOS/SERVICIOS ===" << endl;
 
-    if (
-        this->start == nullptr
-    ) {
-
-        cout
-            << "No hay servicios registrados."
-            << endl;
-
+    if (this->start == nullptr) {
+        cout << "No hay servicios registrados."<< endl;
         return;
     }
 
-    NodoServicio* cursor =
-        this->start;
-
+    NodoServicio* cursor = this->start;
     int numero = 1;
 
-    while (
-        cursor != nullptr
-    ) {
-
-        cout
-            << numero
-            << ". "
-            << cursor->servicio->getNombre()
-            << endl;
-
+    while (cursor != nullptr) {
+        cout << numero << ". " << cursor->servicio->getNombre() << endl;
         numero++;
-
-        cursor =
-            cursor->next;
+        cursor = cursor->next;
     }
 }
-
 
 Paciente* ListaServicios::buscarPaciente(string id, string& nombreServicio) const {
 
     NodoServicio* cursor = this->start;
-
     while (cursor != nullptr) {
 
         Paciente* paciente = cursor ->servicio ->buscarPaciente(id);
-
         if (paciente != nullptr) {
             nombreServicio = cursor-> servicio ->getNombre();
             return paciente;
         }
-
         cursor = cursor->next;
     }
-
     nombreServicio = "";
-
     return nullptr;
 }
 
@@ -207,55 +119,31 @@ int ListaServicios::mostrarEstadoGeneral() const {
     cout << "\n=== ESTADO GENERAL DE SERVICIOS ===" << endl;
 
     if (this->start == nullptr) {
-
         cout << "No hay servicios registrados." << endl;
-
         return 0;
     }
 
     NodoServicio* cursor = this->start;
-
     int totalDerivados = 0;
 
     while (cursor != nullptr) {
-
         Servicio* servicio = cursor->servicio;
-
-        int cantidad =
-            servicio->getCantidadPacientes();
-
-        cout << servicio->getNombre()
-             << ": "
-             << cantidad
-             << " paciente(s)"
-             << endl;
-
+        int cantidad = servicio->getCantidadPacientes();
+        cout << servicio->getNombre() << ": " << cantidad << " paciente(s)"<< endl;
         totalDerivados += cantidad;
-
         cursor = cursor->next;
     }
 
-    cout << "\nTotal de pacientes derivados: "
-         << totalDerivados
-         << endl;
-
+    cout << "\nTotal de pacientes derivados: " << totalDerivados << endl;
     return totalDerivados;
 }
 
 void ListaServicios::clear() {
 
-    while (
-        this->start != nullptr
-    ) {
-
-        NodoServicio* eliminado =
-            this->start;
-
-        this->start =
-            this->start->next;
-
+    while (this->start != nullptr) {
+        NodoServicio* eliminado = this->start;
+        this->start = this->start->next;
         delete eliminado->servicio;
-
         delete eliminado;
     }
 
