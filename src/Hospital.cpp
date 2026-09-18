@@ -111,6 +111,87 @@ bool Hospital::existePaciente(string id) const {
 }
 
 
+void Hospital::buscarPaciente(
+    string id
+) const {
+
+    string buscado = recortar(id);
+
+    if (buscado.empty()) {
+
+        cout << "Debe ingresar un ID valido." << endl;
+
+        return;
+    }
+
+
+    Paciente* paciente =
+        this->colaEspera.buscarPorId(buscado);
+
+    if (paciente != nullptr) {
+
+        cout << "\n=== PACIENTE ENCONTRADO ===" << endl;
+
+        cout << "Estado: En espera" << endl;
+
+        cout << "ID: "
+             << paciente->getId()
+             << endl;
+
+        cout << "Nombre: "
+             << paciente->getNombre()
+             << endl;
+
+        cout << "Edad: "
+             << paciente->getEdad()
+             << endl;
+
+        cout << "Servicio solicitado: "
+             << paciente->getServicio()
+             << endl;
+
+        return;
+    }
+
+
+    string nombreServicio;
+
+    paciente = this->servicios.buscarPaciente(
+        buscado,
+        nombreServicio
+    );
+
+    if (paciente != nullptr) {
+
+        cout << "\n=== PACIENTE ENCONTRADO ===" << endl;
+
+        cout << "Estado: Derivado" << endl;
+
+        cout << "ID: "
+             << paciente->getId()
+             << endl;
+
+        cout << "Nombre: "
+             << paciente->getNombre()
+             << endl;
+
+        cout << "Edad: "
+             << paciente->getEdad()
+             << endl;
+
+        cout << "Servicio actual: "
+             << nombreServicio
+             << endl;
+
+        return;
+    }
+
+    cout << "No existe un paciente con ID "
+         << buscado
+         << "."
+         << endl;
+}
+
 void Hospital::atenderPacientes(int cantidad) {
 
     if (cantidad <= 0) {

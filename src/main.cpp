@@ -1,13 +1,9 @@
-// Nombre: Joaquín Esteban Torres Flores
-// RUT: 21.547.370-8
-// Usuario de GitHub: JoaquinTFdev1
-// Carrera: Ingeniería Civil Industrial
 
 #include <iostream>
+
 #include "Hospital.h"
 
 using namespace std;
-
 
 int main() {
 
@@ -17,28 +13,23 @@ int main() {
 
     Hospital hospital;
 
-    hospital.cargarPacientesDesdeArchivo("pacientes.txt");
+    hospital.cargarPacientesDesdeArchivo(
+        "pacientes.txt"
+    );
 
-    cout << "\n=== COLA INICIAL ===" << endl;
+    cout << "\n=== PRUEBA 1: PACIENTE EN ESPERA ===" << endl;
 
-    hospital.mostrarCola();
+    hospital.buscarPaciente("002");
 
-    hospital.atenderPacientes(2);
+    hospital.atenderPacientes(1);
 
-    cout << "\n=== COLA DESPUES DE ATENDER ===" << endl;
+    cout << "\n=== PRUEBA 2: PACIENTE DERIVADO ===" << endl;
 
-    hospital.mostrarCola();
+    hospital.buscarPaciente("001");
 
-    cout << "\n=== CARDIOLOGIA ===" << endl;
+    cout << "\n=== PRUEBA 3: PACIENTE INEXISTENTE ===" << endl;
 
-    hospital.mostrarDepartamento(3);
-
-    cout << "\n=== URGENCIAS ===" << endl;
-
-    hospital.mostrarDepartamento(1);
-
-    hospital.mostrarHistorial();
-
+    hospital.buscarPaciente("999");
 
     return 0;
 }

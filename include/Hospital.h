@@ -39,4 +39,6 @@ public:
     void mostrarDepartamento(int numero) const;
 
     void mostrarHistorial() const;
+
+    void buscarPaciente(string id) const;
 };
