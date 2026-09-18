@@ -110,6 +110,24 @@ bool Hospital::existePaciente(string id) const {
     return false;
 }
 
+void Hospital::mostrarEstadoGeneral() const {
+
+    int derivados =
+        this->servicios.mostrarEstadoGeneral();
+
+    int pendientes =
+        this->colaEspera.getSize();
+
+    cout << "Pacientes en espera: "
+         << pendientes
+         << endl;
+
+    int total = derivados + pendientes;
+
+    cout << "Total de pacientes registrados: "
+         << total
+         << endl;
+}
 
 void Hospital::buscarPaciente(
     string id

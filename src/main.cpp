@@ -1,3 +1,8 @@
+// Nombre: Joaquín Esteban Torres Flores
+// RUT: 21.547.370-8
+// Usuario de GitHub: JoaquinTFdev1
+// Carrera: Ingeniería Civil Industrial
+
 
 #include <iostream>
 
@@ -17,19 +22,15 @@ int main() {
         "pacientes.txt"
     );
 
-    cout << "\n=== PRUEBA 1: PACIENTE EN ESPERA ===" << endl;
+    cout << "\n=== ESTADO INICIAL ===" << endl;
 
-    hospital.buscarPaciente("002");
+    hospital.mostrarEstadoGeneral();
 
-    hospital.atenderPacientes(1);
+    hospital.atenderPacientes(2);
 
-    cout << "\n=== PRUEBA 2: PACIENTE DERIVADO ===" << endl;
+    cout << "\n=== ESTADO DESPUES DE ATENDER ===" << endl;
 
-    hospital.buscarPaciente("001");
-
-    cout << "\n=== PRUEBA 3: PACIENTE INEXISTENTE ===" << endl;
-
-    hospital.buscarPaciente("999");
+    hospital.mostrarEstadoGeneral();
 
     return 0;
 }

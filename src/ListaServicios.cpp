@@ -202,6 +202,46 @@ Paciente* ListaServicios::buscarPaciente(string id, string& nombreServicio) cons
     return nullptr;
 }
 
+int ListaServicios::mostrarEstadoGeneral() const {
+
+    cout << "\n=== ESTADO GENERAL DE SERVICIOS ===" << endl;
+
+    if (this->start == nullptr) {
+
+        cout << "No hay servicios registrados." << endl;
+
+        return 0;
+    }
+
+    NodoServicio* cursor = this->start;
+
+    int totalDerivados = 0;
+
+    while (cursor != nullptr) {
+
+        Servicio* servicio = cursor->servicio;
+
+        int cantidad =
+            servicio->getCantidadPacientes();
+
+        cout << servicio->getNombre()
+             << ": "
+             << cantidad
+             << " paciente(s)"
+             << endl;
+
+        totalDerivados += cantidad;
+
+        cursor = cursor->next;
+    }
+
+    cout << "\nTotal de pacientes derivados: "
+         << totalDerivados
+         << endl;
+
+    return totalDerivados;
+}
+
 void ListaServicios::clear() {
 
     while (

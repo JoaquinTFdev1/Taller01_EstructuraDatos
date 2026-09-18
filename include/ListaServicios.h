@@ -61,5 +61,7 @@ public:
 
     void mostrarServicios() const;
 
+    int mostrarEstadoGeneral() const;
+
     void clear();
 };

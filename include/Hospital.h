@@ -40,5 +40,7 @@ public:
 
     void mostrarHistorial() const;
 
+    void mostrarEstadoGeneral() const;
+
     void buscarPaciente(string id) const;
 };
