@@ -33,21 +33,21 @@ public:
 
     ~ColaPacientes();
 
-    ColaPacientes(const ColaPacientes&) = delete;
-    ColaPacientes& operator=(const ColaPacientes&) = delete;
+    ColaPacientes(ColaPacientes&) = delete;
+    ColaPacientes& operator=(ColaPacientes&) = delete;
 
-    bool isEmpty() const;
+    bool isEmpty();
 
-    int getSize() const;
+    int getSize();
 
     void push(Paciente* paciente);
 
     Paciente* pop();
 
-    Paciente* front() const;
+    Paciente* front();
 
-    Paciente* buscarPorId(string id) const;
+    Paciente* buscarPorId(string id);
 
-    void mostrar() const;
+    void mostrar();
 
 };

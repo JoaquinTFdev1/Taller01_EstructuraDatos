@@ -26,7 +26,7 @@ void Hospital::inicializarServicios() {
     this->servicios.insertLast(new Servicio("Hospitalizacion"));
 }
 
-bool Hospital::cargarPacientesDesdeArchivo(string ruta) {
+bool Hospital::cargarPacientesDesdeArchivo(string ruta,bool mostrarResumen) {
 
     ifstream archivo(ruta);
 
@@ -42,7 +42,22 @@ bool Hospital::cargarPacientesDesdeArchivo(string ruta) {
     int rechazados = 0;
 
 
-    while (getline(archivo,linea)) {
+    char caracter;
+    while (archivo) {
+
+        linea = "";
+        bool hayLinea = false;
+        while (archivo.get(caracter)) {
+            hayLinea = true;
+            if (caracter == '\n') {
+                break;
+            }
+            linea += caracter;
+        }
+
+        if (!hayLinea) {
+            break;
+        }
 
         numeroLinea++;
 
@@ -82,21 +97,23 @@ bool Hospital::cargarPacientesDesdeArchivo(string ruta) {
 
     archivo.close();
 
-    cout << "\n=== RESULTADO DE LA CARGA ===" << endl;
-    cout << "Pacientes incorporados: " << incorporados << endl;
-    cout << "Registros rechazados: " << rechazados << endl;
+    if (mostrarResumen) {
+        cout << "\n=== RESULTADO DE LA CARGA ===" << endl;
+        cout << "Pacientes incorporados: " << incorporados << endl;
+        cout << "Registros rechazados: " << rechazados << endl;
+    }
 
     return true;
 }
 
 
-void Hospital::mostrarCola() const {
+void Hospital::mostrarCola() {
 
     this->colaEspera.mostrar();
 }
 
 
-bool Hospital::existePaciente(string id) const {
+bool Hospital::existePaciente(string id) {
 
     if (this->colaEspera.buscarPorId(id)!= nullptr) {
         return true;
@@ -112,28 +129,20 @@ bool Hospital::existePaciente(string id) const {
 
 
 
-void Hospital::mostrarEstadoGeneral() const {
+void Hospital::mostrarEstadoGeneral() {
 
-    int derivados =
-        this->servicios.mostrarEstadoGeneral();
+    int derivados = this->servicios.mostrarEstadoGeneral();
 
-    int pendientes =
-        this->colaEspera.getSize();
+    int pendientes = this->colaEspera.getSize();
 
-    cout << "Pacientes en espera: "
-         << pendientes
-         << endl;
+    cout << "Pacientes en espera: " << pendientes<< endl;
 
     int total = derivados + pendientes;
 
-    cout << "Total de pacientes registrados: "
-         << total
-         << endl;
+    cout << "Total de pacientes registrados: " << total<< endl;
 }
 
-void Hospital::buscarPaciente(
-    string id
-) const {
+void Hospital::buscarPaciente(string id) {
 
     string buscado = recortar(id);
 
@@ -145,8 +154,7 @@ void Hospital::buscarPaciente(
     }
 
 
-    Paciente* paciente =
-        this->colaEspera.buscarPorId(buscado);
+    Paciente* paciente = this->colaEspera.buscarPorId(buscado);
 
     if (paciente != nullptr) {
 
@@ -154,21 +162,13 @@ void Hospital::buscarPaciente(
 
         cout << "Estado: En espera" << endl;
 
-        cout << "ID: "
-             << paciente->getId()
-             << endl;
+        cout << "ID: " << paciente->getId() << endl;
 
-        cout << "Nombre: "
-             << paciente->getNombre()
-             << endl;
+        cout << "Nombre: " << paciente->getNombre()<< endl;
 
-        cout << "Edad: "
-             << paciente->getEdad()
-             << endl;
+        cout << "Edad: " << paciente->getEdad() << endl;
 
-        cout << "Servicio solicitado: "
-             << paciente->getServicio()
-             << endl;
+        cout << "Servicio solicitado: " << nombreServicioConTildes(paciente->getServicio()) << endl;
 
         return;
     }
@@ -176,10 +176,7 @@ void Hospital::buscarPaciente(
 
     string nombreServicio;
 
-    paciente = this->servicios.buscarPaciente(
-        buscado,
-        nombreServicio
-    );
+    paciente = this->servicios.buscarPaciente(buscado,nombreServicio);
 
     if (paciente != nullptr) {
 
@@ -187,57 +184,36 @@ void Hospital::buscarPaciente(
 
         cout << "Estado: Derivado" << endl;
 
-        cout << "ID: "
-             << paciente->getId()
-             << endl;
+        cout << "ID: " << paciente->getId() << endl;
 
-        cout << "Nombre: "
-             << paciente->getNombre()
-             << endl;
+        cout << "Nombre: " << paciente->getNombre() << endl;
 
-        cout << "Edad: "
-             << paciente->getEdad()
-             << endl;
+        cout << "Edad: " << paciente->getEdad() << endl;
 
-        cout << "Servicio actual: "
-             << nombreServicio
-             << endl;
+        cout << "Servicio actual: " << nombreServicioConTildes(nombreServicio) << endl;
 
         return;
     }
 
-    cout << "No existe un paciente con ID "
-         << buscado
-         << "."
-         << endl;
+    cout << "No existe un paciente con ID " << buscado << "."<< endl;
 }
 
 
 void Hospital::atenderPacientes(int cantidad) {
 
     if (cantidad <= 0) {
-
-        cout << "La cantidad a atender debe ser mayor que 0."
-             << endl;
-
+        cout << "La cantidad a atender debe ser mayor que 0."<< endl;
         return;
     }
 
     if (this->colaEspera.isEmpty()) {
-
-        cout << "No hay pacientes pendientes."
-             << endl;
-
+        cout << "No hay pacientes pendientes." << endl;
         return;
     }
 
     if (cantidad > this->colaEspera.getSize()) {
 
-        cout << "Solo hay "
-             << this->colaEspera.getSize()
-             << " paciente(s) en espera."
-             << endl;
-
+        cout << "Solo hay " << this->colaEspera.getSize() << " paciente(s) en espera." << endl;
         cantidad = this->colaEspera.getSize();
     }
 
@@ -246,24 +222,14 @@ void Hospital::atenderPacientes(int cantidad) {
     for (int i = 0; i < cantidad; i++) {
 
         Paciente* paciente = this->colaEspera.front();
-
         if (paciente == nullptr) {
-
             return;
         }
 
-        Servicio* servicio =
-            this->servicios.buscarServicio(
-                paciente->getServicio()
-            );
+        Servicio* servicio = this->servicios.buscarServicio(paciente->getServicio());
 
         if (servicio == nullptr) {
-
-            cout << "Error: no se encontro el servicio de "
-                 << paciente->getNombre()
-                 << "."
-                 << endl;
-
+            cout << "Error: no se encontro el servicio de " << paciente->getNombre() << "." << endl;
             return;
         }
 
@@ -275,32 +241,21 @@ void Hospital::atenderPacientes(int cantidad) {
 
         this->historial.push(registro);
 
-        cout << "\nPaciente atendido:" << endl;
 
-        cout << "ID: "
-             << paciente->getId()
-             << endl;
 
-        cout << "Nombre: "
-             << paciente->getNombre()
-             << endl;
+        cout << "ID: " << paciente->getId() << endl;
 
-        cout << "Edad: "
-             << paciente->getEdad()
-             << endl;
+        cout << "Nombre: " << paciente->getNombre() << endl;
 
-        cout << "Servicio: "
-             << paciente->getServicio()
-             << endl;
+        cout << "Edad: " << paciente->getEdad()<< endl;
 
-        cout << "Paciente enviado a "
-             << paciente->getServicio()
-             << "."
-             << endl;
+        cout << "Servicio: " << nombreServicioConTildes(paciente->getServicio()) << endl;
+
+        cout << "\nPaciente enviado a " << nombreServicioConTildes(paciente->getServicio()) << "." << endl;
     }
 }
 
-void Hospital::mostrarDepartamento(int numero) const {
+void Hospital::mostrarDepartamento(int numero) {
 
     if (numero < 1 || numero > this->servicios.getSize()) {
         cout << "Departamento invalido." << endl;
@@ -317,12 +272,12 @@ void Hospital::mostrarDepartamento(int numero) const {
     servicio->mostrarPacientes();
 }
 
-void Hospital::mostrarHistorial() const {
+void Hospital::mostrarHistorial() {
 
     this->historial.mostrar();
 }
 
-void Hospital::mostrarServicios() const {
+void Hospital::mostrarServicios() {
 
     this->servicios.mostrarServicios();
 }

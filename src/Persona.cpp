@@ -7,10 +7,10 @@ Persona::Persona(string nombre, int edad) {
 
 Persona::~Persona() {}
 
-string Persona::getNombre() const {
+string Persona::getNombre() {
     return this->nombre;
 }
 
-int Persona::getEdad() const {
+int Persona::getEdad() {
     return this->edad;
 }

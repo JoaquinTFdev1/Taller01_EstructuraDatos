@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Paciente.h"
-
 #include <string>
 
 using namespace std;
@@ -36,23 +35,23 @@ public:
 
     ~ListaPacientes();
 
-    ListaPacientes(const ListaPacientes&) = delete;
+    ListaPacientes(ListaPacientes&) = delete;
 
-    ListaPacientes& operator=(const ListaPacientes&) = delete;
+    ListaPacientes& operator=(ListaPacientes&) = delete;
 
-    bool isEmpty() const;
+    bool isEmpty();
 
-    int getSize() const;
+    int getSize();
 
     void insertLast(Paciente* paciente);
 
-    Paciente* get(int index) const;
+    Paciente* get(int index);
 
-    Paciente* getFirst() const;
+    Paciente* getFirst();
 
-    Paciente* buscarPorId(string id) const;
+    Paciente* buscarPorId(string id);
 
-    void mostrar() const;
+    void mostrar();
 
     void clear();
 };

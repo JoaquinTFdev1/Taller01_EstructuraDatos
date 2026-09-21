@@ -1,4 +1,5 @@
 #include "ListaServicios.h"
+#include "Utilidades.h"
 #include <iostream>
 
 using namespace std;
@@ -12,11 +13,11 @@ ListaServicios::~ListaServicios() {
     this->clear();
 }
 
-bool ListaServicios::isEmpty() const {
+bool ListaServicios::isEmpty() {
     return this->start == nullptr;
 }
 
-int ListaServicios::getSize() const {
+int ListaServicios::getSize() {
     return this->cantidad;
 }
 
@@ -43,7 +44,7 @@ void ListaServicios::insertLast(Servicio* servicio) {
     this->cantidad++;
 }
 
-Servicio* ListaServicios::get(int index) const {
+Servicio* ListaServicios::get(int index) {
 
     if (index < 0 || index >= this->cantidad) {
         return nullptr;
@@ -64,7 +65,7 @@ Servicio* ListaServicios::get(int index) const {
     return nullptr;
 }
 
-Servicio* ListaServicios::buscarServicio(string nombre) const {
+Servicio* ListaServicios::buscarServicio(string nombre) {
 
     NodoServicio* cursor = this->start;
 
@@ -79,7 +80,7 @@ Servicio* ListaServicios::buscarServicio(string nombre) const {
     return nullptr;
 }
 
-void ListaServicios::mostrarServicios() const {
+void ListaServicios::mostrarServicios() {
 
     cout << "\n=== DEPARTAMENTOS/SERVICIOS ===" << endl;
 
@@ -92,13 +93,13 @@ void ListaServicios::mostrarServicios() const {
     int numero = 1;
 
     while (cursor != nullptr) {
-        cout << numero << ". " << cursor->servicio->getNombre() << endl;
+        cout << numero << ". " << nombreServicioConTildes(cursor->servicio->getNombre()) << endl;
         numero++;
         cursor = cursor->next;
     }
 }
 
-Paciente* ListaServicios::buscarPaciente(string id, string& nombreServicio) const {
+Paciente* ListaServicios::buscarPaciente(string id, string& nombreServicio) {
 
     NodoServicio* cursor = this->start;
     while (cursor != nullptr) {
@@ -114,7 +115,7 @@ Paciente* ListaServicios::buscarPaciente(string id, string& nombreServicio) cons
     return nullptr;
 }
 
-int ListaServicios::mostrarEstadoGeneral() const {
+int ListaServicios::mostrarEstadoGeneral() {
 
     cout << "\n=== ESTADO GENERAL DE SERVICIOS ===" << endl;
 
@@ -129,7 +130,7 @@ int ListaServicios::mostrarEstadoGeneral() const {
     while (cursor != nullptr) {
         Servicio* servicio = cursor->servicio;
         int cantidad = servicio->getCantidadPacientes();
-        cout << servicio->getNombre() << ": " << cantidad << " paciente(s)"<< endl;
+        cout << nombreServicioConTildes(servicio->getNombre()) << ": " << cantidad << " paciente(s)"<< endl;
         totalDerivados += cantidad;
         cursor = cursor->next;
     }

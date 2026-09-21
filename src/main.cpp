@@ -1,3 +1,4 @@
+
 // Nombre: Joaquín Esteban Torres Flores
 // RUT: 21.547.370-8
 // Usuario de GitHub: JoaquinTFdev1
@@ -15,13 +16,7 @@ int main() {
 
     Hospital hospital;
 
-    cout << "================================" << endl;
-    cout << "       HOSPITAL MARMAJA         " << endl;
-    cout << "================================" << endl;
-
-    cout << "\nCargando archivo inicial..." << endl;
-
-    hospital.cargarPacientesDesdeArchivo("pacientes.txt");
+    hospital.cargarPacientesDesdeArchivo("pacientes.txt", false);
 
     string entrada;
 
@@ -30,18 +25,14 @@ int main() {
 
     while (continuar) {
 
-        cout << "\n================================" << endl;
-        cout << "       HOSPITAL MARMAJA         " << endl;
-        cout << "================================" << endl;
-
+        cout << "\n=== HOSPITAL MARMAJA ===" << endl;
         cout << "1. Atender pacientes" << endl;
         cout << "2. Ver departamento" << endl;
         cout << "3. Revisar historial de atencion" << endl;
         cout << "4. Mostrar cola de pacientes pendientes" << endl;
         cout << "5. Mostrar estado general de servicios" << endl;
         cout << "6. Buscar paciente por ID" << endl;
-        cout << "7. Cargar pacientes desde otro archivo" << endl;
-        cout << "8. Salir" << endl;
+        cout << "7. Salir" << endl;
 
         cout << "\nSeleccionar opcion: ";
 
@@ -49,18 +40,20 @@ int main() {
             break;
         }
 
-        if (!convertirAEnteroNoNegativo(entrada,opcion)) {
-            cout << "Opcion invalida. " << "Debe ingresar un numero." << endl;
+        if (!convertirAEnteroNoNegativo(entrada, opcion)) {
+            cout << "Opcion invalida. Debe ingresar un numero." << endl;
             continue;
         }
 
-        if (opcion < 1 || opcion > 8) {
-            cout << "Opcion invalida. " << "Ingrese un numero entre 1 y 8." << endl;
+        if (opcion < 1 || opcion > 7) {
+            cout << "Opcion invalida. Ingrese un numero entre 1 y 7." << endl;
             continue;
         }
 
         if (opcion == 1) {
+
             hospital.mostrarCola();
+
             cout << "\nIndique la cantidad de pacientes a atender: ";
 
             if (!getline(cin, entrada)) {
@@ -69,7 +62,7 @@ int main() {
 
             int cantidad = 0;
 
-            if (!convertirAEnteroNoNegativo(entrada,cantidad)) {
+            if (!convertirAEnteroNoNegativo(entrada, cantidad)) {
                 cout << "Cantidad invalida." << endl;
                 continue;
             }
@@ -80,7 +73,8 @@ int main() {
         else if (opcion == 2) {
 
             hospital.mostrarServicios();
-            cout << "\nSeleccionar departamento (1-8): ";
+
+            cout << "\nSeleccionar opcion: ";
 
             if (!getline(cin, entrada)) {
                 break;
@@ -88,10 +82,11 @@ int main() {
 
             int numero = 0;
 
-            if (!convertirAEnteroNoNegativo(entrada,numero)) {
+            if (!convertirAEnteroNoNegativo(entrada, numero)) {
                 cout << "Departamento invalido." << endl;
                 continue;
             }
+
             hospital.mostrarDepartamento(numero);
         }
 
@@ -108,36 +103,22 @@ int main() {
         }
 
         else if (opcion == 6) {
+
             cout << "\nIngrese el ID del paciente: ";
 
             if (!getline(cin, entrada)) {
                 break;
             }
+
             hospital.buscarPaciente(entrada);
         }
 
         else if (opcion == 7) {
-
-            cout << "\nIngrese la ruta del archivo: ";
-            if (!getline(cin, entrada)) {
-                break;
-            }
-            string ruta = recortar(entrada);
-
-            if (ruta.empty()) {
-                cout << "La ruta no puede estar vacia." << endl;
-                continue;
-            }
-
-            hospital.cargarPacientesDesdeArchivo(ruta);
-        }
-
-        else if (opcion == 8) {
             continuar = false;
         }
     }
 
-    cout << "\nHasta luego." << endl;
+    cout << "\nHasta luego :3." << endl;
 
     return 0;
 }

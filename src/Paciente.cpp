@@ -7,10 +7,10 @@ Paciente::Paciente(string id,string nombre,int edad,string servicio): Persona(no
 
 Paciente::~Paciente() {}
 
-string Paciente::getId() const {
+string Paciente::getId() {
     return this->id;
 }
 
-string Paciente::getServicio() const {
+string Paciente::getServicio() {
     return this->servicio;
 }

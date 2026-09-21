@@ -36,7 +36,3 @@ target_include_directories(taller01 PRIVATE include)
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/pacientes.txt
         ${CMAKE_CURRENT_BINARY_DIR}/pacientes.txt
         COPYONLY)
-
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/pacientes_pruebas_invalidas.txt
-        ${CMAKE_CURRENT_BINARY_DIR}/pacientes_pruebas_invalidas.txt
-        COPYONLY)

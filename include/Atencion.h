@@ -13,15 +13,15 @@ private:
 
 public:
     Atencion();
-    Atencion(const Paciente& paciente);
+    Atencion(Paciente& paciente);
 
     ~Atencion();
 
-    string getId() const;
+    string getId();
 
-    string getNombre() const;
+    string getNombre();
 
-    int getEdad() const;
+    int getEdad();
 
-    string getServicio() const;
+    string getServicio();
 };

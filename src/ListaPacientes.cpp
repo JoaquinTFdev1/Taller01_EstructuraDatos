@@ -12,11 +12,11 @@ ListaPacientes::~ListaPacientes() {
     this->clear();
 }
 
-bool ListaPacientes::isEmpty() const {
+bool ListaPacientes::isEmpty() {
     return this->start == nullptr;
 }
 
-int ListaPacientes::getSize() const {
+int ListaPacientes::getSize() {
     return this->cantidad;
 }
 
@@ -44,7 +44,7 @@ void ListaPacientes::insertLast(Paciente* paciente) {
     this->cantidad++;
 }
 
-Paciente* ListaPacientes::get(int index) const {
+Paciente* ListaPacientes::get(int index) {
 
     if (index < 0 || index >= this->cantidad) {
         return nullptr;
@@ -64,7 +64,7 @@ Paciente* ListaPacientes::get(int index) const {
     return nullptr;
 }
 
-Paciente* ListaPacientes::getFirst() const {
+Paciente* ListaPacientes::getFirst() {
 
     if (this->start == nullptr) {
         return nullptr;
@@ -74,7 +74,7 @@ Paciente* ListaPacientes::getFirst() const {
         this->start->paciente;
 }
 
-Paciente* ListaPacientes::buscarPorId(string id) const {
+Paciente* ListaPacientes::buscarPorId(string id) {
 
     NodoPaciente* cursor = this->start;
 
@@ -88,7 +88,7 @@ Paciente* ListaPacientes::buscarPorId(string id) const {
     return nullptr;
 }
 
-void ListaPacientes::mostrar() const {
+void ListaPacientes::mostrar() {
 
     if (this->start == nullptr) {
         cout << "No hay pacientes en la lista." << endl;
@@ -96,12 +96,9 @@ void ListaPacientes::mostrar() const {
     }
 
     NodoPaciente* cursor =this->start;
-    int numero = 1;
-
     while (cursor != nullptr) {
         Paciente* paciente = cursor->paciente;
-        cout << numero << ". " << paciente->getId() << " - " << paciente->getNombre() << " (" << paciente->getEdad() << ")" << endl;
-        numero++;
+        cout << paciente->getNombre() << " (" << paciente->getEdad() << ")" << endl;
         cursor = cursor->next;
     }
 }

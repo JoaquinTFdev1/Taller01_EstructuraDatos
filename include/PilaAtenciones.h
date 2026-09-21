@@ -9,7 +9,7 @@ private:
     public:
         Atencion atencion;
         NodoAtencion* next;
-        NodoAtencion(const Atencion& atencion) {
+        NodoAtencion(Atencion& atencion) {
             this->atencion = atencion;
             this->next = nullptr;
         }
@@ -24,21 +24,23 @@ public:
 
     ~PilaAtenciones();
 
-    PilaAtenciones(const PilaAtenciones&) = delete;
+    PilaAtenciones(PilaAtenciones&) = delete;
 
-    PilaAtenciones& operator=(const PilaAtenciones&) = delete;
+    PilaAtenciones& operator=(PilaAtenciones&) = delete;
 
-    bool isEmpty() const;
+    bool isEmpty();
 
-    int getSize() const;
+    int getSize();
 
-    void push(const Atencion& atencion);
-
+    void push(Atencion& atencion);
     bool pop(Atencion& atencion);
 
-    bool top(Atencion& atencion) const;
+    bool top(Atencion& atencion);
 
-    void mostrar() const;
+    void mostrar();
 
     void clear();
 };
+
+
+

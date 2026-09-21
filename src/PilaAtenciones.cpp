@@ -1,4 +1,5 @@
 #include "PilaAtenciones.h"
+#include "Utilidades.h"
 #include <iostream>
 using namespace std;
 
@@ -11,15 +12,15 @@ PilaAtenciones::~PilaAtenciones() {
     this->clear();
 }
 
-bool PilaAtenciones::isEmpty() const {
+bool PilaAtenciones::isEmpty() {
     return this->topNode == nullptr;
 }
 
-int PilaAtenciones::getSize() const {
+int PilaAtenciones::getSize() {
     return this->cantidad;
 }
 
-void PilaAtenciones::push(const Atencion& atencion) {
+void PilaAtenciones::push(Atencion& atencion) {
 
     NodoAtencion* nuevo = new NodoAtencion(atencion);
 
@@ -44,7 +45,7 @@ bool PilaAtenciones::pop(Atencion& atencion) {
 }
 
 
-bool PilaAtenciones::top(Atencion& atencion) const {
+bool PilaAtenciones::top(Atencion& atencion) {
 
     if (this->topNode == nullptr) {
         return false;
@@ -55,9 +56,9 @@ bool PilaAtenciones::top(Atencion& atencion) const {
 }
 
 
-void PilaAtenciones::mostrar() const {
+void PilaAtenciones::mostrar() {
 
-    cout << "\n=== HISTORIAL DE ATENCIONES ===" << endl;
+    cout << "\n=== HISTORIAL DE ÚLTIMAS ATENCIONES DEL HOSPITAL ===" << endl;
 
     if (this->topNode == nullptr) {
         cout << "No hay atenciones registradas." << endl;
@@ -65,11 +66,9 @@ void PilaAtenciones::mostrar() const {
     }
 
     NodoAtencion* cursor = this->topNode;
-    int numero = 1;
     while (cursor != nullptr) {
-        cout << numero << ". " << cursor->atencion.getNombre() << " | Edad: " << cursor->atencion.getEdad() << " | Departamento: " << cursor->atencion.getServicio() << endl;
+        cout << "Nombre: " << cursor->atencion.getNombre() << " | Edad: " << cursor->atencion.getEdad() << " | Departamento: " << nombreServicioConTildes(cursor->atencion.getServicio()) << endl;
         cursor = cursor->next;
-        numero++;
     }
 }
 

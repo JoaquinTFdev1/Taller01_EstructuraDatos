@@ -14,9 +14,9 @@ public:
 
     Servicio(string nombre);
     ~Servicio();
-    string getNombre() const;
-    int getCantidadPacientes() const;
+    string getNombre();
+    int getCantidadPacientes();
     void agregarPaciente(Paciente* paciente);
-    Paciente* buscarPaciente(string id) const;
-    void mostrarPacientes() const;
+    Paciente* buscarPaciente(string id);
+    void mostrarPacientes();
 };

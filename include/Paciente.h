@@ -22,7 +22,7 @@ public:
 
     ~Paciente();
 
-    string getId() const;
+    string getId();
 
-    string getServicio() const;
+    string getServicio();
 };

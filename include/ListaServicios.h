@@ -26,25 +26,25 @@ public:
 
     ~ListaServicios();
 
-    ListaServicios(const ListaServicios&) = delete;
+    ListaServicios(ListaServicios&) = delete;
 
-    ListaServicios& operator=(const ListaServicios&) = delete;
+    ListaServicios& operator=(ListaServicios&) = delete;
 
-    bool isEmpty() const;
+    bool isEmpty();
 
-    int getSize() const;
+    int getSize();
 
     void insertLast(Servicio* servicio);
 
-    Servicio* get(int index) const;
+    Servicio* get(int index);
 
-    Servicio* buscarServicio(string nombre) const;
+    Servicio* buscarServicio(string nombre);
 
-    Paciente* buscarPaciente(string id,string& nombreServicio) const;
+    Paciente* buscarPaciente(string id,string& nombreServicio);
 
-    void mostrarServicios() const;
+    void mostrarServicios();
 
-    int mostrarEstadoGeneral() const;
+    int mostrarEstadoGeneral();
 
     void clear();
 };

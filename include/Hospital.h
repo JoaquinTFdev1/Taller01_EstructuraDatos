@@ -3,7 +3,6 @@
 #include "ColaPacientes.h"
 #include "ListaServicios.h"
 #include "PilaAtenciones.h"
-
 #include <string>
 
 using namespace std;
@@ -20,7 +19,7 @@ private:
     PilaAtenciones historial;
 
     void inicializarServicios();
-    bool existePaciente(string id) const;
+    bool existePaciente(string id);
 
 
 public:
@@ -28,19 +27,19 @@ public:
     Hospital();
     ~Hospital();
 
-    bool cargarPacientesDesdeArchivo(string ruta);
+    bool cargarPacientesDesdeArchivo(string ruta,bool mostrarResumen = true);
 
-    void mostrarCola() const;
+    void mostrarCola();
 
-    void mostrarServicios() const;
+    void mostrarServicios();
 
     void atenderPacientes(int cantidad);
 
-    void mostrarDepartamento(int numero) const;
+    void mostrarDepartamento(int numero);
 
-    void mostrarHistorial() const;
+    void mostrarHistorial();
 
-    void mostrarEstadoGeneral() const;
+    void mostrarEstadoGeneral();
 
-    void buscarPaciente(string id) const;
+    void buscarPaciente(string id);
 };

@@ -4,8 +4,13 @@
 bool interpretarLineaPaciente(string linea,string& id,string& nombre,int& edad,string& servicio,string& error) {
     string campos[4];
     int cantidadCampos = 0;
-    const char* inicioCampo = linea.c_str();
-    const char* cursor = inicioCampo;
+    if (linea.empty()) {
+        error = "la linea esta vacia";
+        return false;
+    }
+
+    char* inicioCampo = &linea[0];
+    char* cursor = inicioCampo;
 
     while (true) {
 
@@ -15,7 +20,7 @@ bool interpretarLineaPaciente(string linea,string& id,string& nombre,int& edad,s
                 return false;
             }
 
-            int largoCampo = static_cast<int>(cursor - inicioCampo);
+            int largoCampo = cursor - inicioCampo;
 
             campos[cantidadCampos] = recortar(string(inicioCampo,largoCampo));
 

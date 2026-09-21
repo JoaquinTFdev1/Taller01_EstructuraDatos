@@ -1,17 +1,20 @@
 #include "Utilidades.h"
-#include <cctype>
 #include <climits>
 
 string recortar(string texto) {
 
     int inicio = 0;
-    int fin = static_cast<int>(texto.size()) - 1;
+    if (texto.empty()) {
+        return "";
+    }
 
-    while (inicio <= fin && isspace(static_cast<unsigned char>(texto[inicio]))) {
+    int fin = texto.length() - 1;
+
+    while (inicio <= fin && (texto[inicio] == ' ' || texto[inicio] == '\t' || texto[inicio] == '\r' || texto[inicio] == '\n')) {
         inicio++;
     }
 
-    while (fin >= inicio && isspace(static_cast<unsigned char>(texto[fin]))) {
+    while (fin >= inicio && (texto[fin] == ' ' || texto[fin] == '\t' || texto[fin] == '\r' || texto[fin] == '\n')) {
         fin--;
     }
 
@@ -19,7 +22,11 @@ string recortar(string texto) {
         return "";
     }
 
-    return texto.substr(inicio,fin - inicio + 1);
+    string resultado = "";
+    for (int i = inicio; i <= fin; i++) {
+        resultado += texto[i];
+    }
+    return resultado;
 }
 
 bool convertirAEnteroNoNegativo(string texto,int& valor) {
@@ -80,4 +87,14 @@ string obtenerNombreServicioCanonico(string servicio) {
     }
 
     return "";
+}
+
+string nombreServicioConTildes(string servicio) {
+    if (servicio == "Cardiologia") return "Cardiología";
+    if (servicio == "Neurologia") return "Neurología";
+    if (servicio == "Traumatologia") return "Traumatología";
+    if (servicio == "Cirugia") return "Cirugía";
+    if (servicio == "Pediatria") return "Pediatría";
+    if (servicio == "Hospitalizacion") return "Hospitalización";
+    return servicio;
 }

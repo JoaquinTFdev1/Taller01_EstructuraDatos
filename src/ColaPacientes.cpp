@@ -15,11 +15,11 @@ ColaPacientes::~ColaPacientes() {
     }
 }
 
-bool ColaPacientes::isEmpty() const {
+bool ColaPacientes::isEmpty() {
     return this->frente == nullptr;
 }
 
-int ColaPacientes::getSize() const {
+int ColaPacientes::getSize() {
     return this->cantidad;
 }
 
@@ -63,7 +63,7 @@ Paciente* ColaPacientes::pop() {
 }
 
 
-Paciente* ColaPacientes::buscarPorId(string id) const {
+Paciente* ColaPacientes::buscarPorId(string id) {
 
     NodoCola* cursor = this->frente;
 
@@ -77,14 +77,14 @@ Paciente* ColaPacientes::buscarPorId(string id) const {
 }
 
 
-Paciente* ColaPacientes::front() const {
+Paciente* ColaPacientes::front() {
     if (this->frente == nullptr) {
         return nullptr;
     }
     return this->frente->paciente;
 }
 
-void ColaPacientes::mostrar() const {
+void ColaPacientes::mostrar() {
 
     cout << "\n=== PACIENTES EN ESPERA ===" << endl;
     if (this->isEmpty()) {

@@ -15,7 +15,7 @@ public:
 
     virtual ~Persona();
 
-    string getNombre() const;
+    string getNombre();
 
-    int getEdad() const;
+    int getEdad();
 };

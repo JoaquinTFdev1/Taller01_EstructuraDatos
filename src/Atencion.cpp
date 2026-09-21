@@ -7,7 +7,7 @@ Atencion::Atencion() {
     this->servicio = "";
 }
 
-Atencion::Atencion(const Paciente& paciente) {
+Atencion::Atencion(Paciente& paciente) {
     this->id = paciente.getId();
     this->nombre = paciente.getNombre();
     this->edad = paciente.getEdad();
@@ -16,18 +16,18 @@ Atencion::Atencion(const Paciente& paciente) {
 
 Atencion::~Atencion() {}
 
-string Atencion::getId() const {
+string Atencion::getId() {
     return this->id;
 }
 
-string Atencion::getNombre() const {
+string Atencion::getNombre() {
     return this->nombre;
 }
 
-int Atencion::getEdad() const {
+int Atencion::getEdad() {
     return this->edad;
 }
 
-string Atencion::getServicio() const {
+string Atencion::getServicio() {
     return this->servicio;
 }
