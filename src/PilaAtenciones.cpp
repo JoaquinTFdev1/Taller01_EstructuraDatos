@@ -58,7 +58,7 @@ bool PilaAtenciones::top(Atencion& atencion) {
 
 void PilaAtenciones::mostrar() {
 
-    cout << "\n=== HISTORIAL DE ÚLTIMAS ATENCIONES DEL HOSPITAL ===" << endl;
+    cout << "\n=== HISTORIAL DE ULTIMAS ATENCIONES DEL HOSPITAL ===" << endl;
 
     if (this->topNode == nullptr) {
         cout << "No hay atenciones registradas." << endl;

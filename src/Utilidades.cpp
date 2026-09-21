@@ -90,11 +90,11 @@ string obtenerNombreServicioCanonico(string servicio) {
 }
 
 string nombreServicioConTildes(string servicio) {
-    if (servicio == "Cardiologia") return "Cardiología";
-    if (servicio == "Neurologia") return "Neurología";
-    if (servicio == "Traumatologia") return "Traumatología";
-    if (servicio == "Cirugia") return "Cirugía";
-    if (servicio == "Pediatria") return "Pediatría";
-    if (servicio == "Hospitalizacion") return "Hospitalización";
+    if (servicio == "Cardiologia") return "Cardiologia";
+    if (servicio == "Neurologia") return "Neurologia";
+    if (servicio == "Traumatologia") return "Traumatologia";
+    if (servicio == "Cirugia") return "Cirugia";
+    if (servicio == "Pediatria") return "Pediatria";
+    if (servicio == "Hospitalizacion") return "Hospitalizacion";
     return servicio;
 }

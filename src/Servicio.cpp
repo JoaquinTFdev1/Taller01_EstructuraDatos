@@ -34,28 +34,28 @@ void Servicio::mostrarPacientes() {
         departamento = "medicina general";
     }
     else if (this->nombre == "Cardiologia") {
-        titulo = "CARDIOLOGÍA";
-        departamento = "cardiología";
+        titulo = "CARDIOLOGIA";
+        departamento = "cardiologia";
     }
     else if (this->nombre == "Neurologia") {
-        titulo = "NEUROLOGÍA";
-        departamento = "neurología";
+        titulo = "NEUROLOGIA";
+        departamento = "neurologia";
     }
     else if (this->nombre == "Traumatologia") {
-        titulo = "TRAUMATOLOGÍA";
-        departamento = "traumatología";
+        titulo = "TRAUMATOLOGIA";
+        departamento = "traumatologia";
     }
     else if (this->nombre == "Cirugia") {
-        titulo = "CIRUGÍA";
-        departamento = "cirugía";
+        titulo = "CIRUGIA";
+        departamento = "cirugia";
     }
     else if (this->nombre == "Pediatria") {
-        titulo = "PEDIATRÍA";
-        departamento = "pediatría";
+        titulo = "PEDIATRIA";
+        departamento = "pediatria";
     }
     else if (this->nombre == "Hospitalizacion") {
-        titulo = "HOSPITALIZACIÓN";
-        departamento = "hospitalización";
+        titulo = "HOSPITALIZACION";
+        departamento = "hospitalizacion";
     }
 
     cout << "\n=== ESTADO " << titulo << " ===" << endl;
